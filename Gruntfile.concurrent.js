@@ -100,7 +100,7 @@ module.exports = function gruntConfig(grunt) {
       ],
       options: {
         format: process.env.XUNIT ? 'checkstyle' : 'stylish',
-        outputFile: process.env.XUNIT && 'reports/style/eslint-<%= package %>.xml'
+        outputFile: process.env.XUNIT && 'reports/style/eslint-packges.xml'
       },
     },
 

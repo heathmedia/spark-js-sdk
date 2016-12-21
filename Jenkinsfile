@@ -55,12 +55,10 @@ def generateSecretsFile = { ->
     usernamePassword(credentialsId: 'SAUCE_LABS_VALIDATED_MERGE_CREDENTIALS', passwordVariable: 'SAUCE_ACCESS_KEY', usernameVariable: 'SAUCE_USERNAME'),
     string(credentialsId: 'ddfd04fb-e00a-4df0-9250-9a7cb37bce0e', variable: 'COMMON_IDENTITY_CLIENT_SECRET')
   ]) {
-    if (!COMMON_IDENTITY_CLIENT_SECRET) {
-      if (!env.COMMON_IDENTITY_CLIENT_SECRET) {
-        error(1)
-      }
-      error(2);
-    }
+    echo "COMMON_IDENTITY_CLIENT_SECRET"
+    echo COMMON_IDENTITY_CLIENT_SECRET
+    echo "env.COMMON_IDENTITY_CLIENT_SECRET"
+    echo env.COMMON_IDENTITY_CLIENT_SECRET
     def secrets = ""
     secrets += "COMMON_IDENTITY_CLIENT_SECRET=${COMMON_IDENTITY_CLIENT_SECRET}"
     secrets += "CISCOSPARK_APPID_SECRET=${CISCOSPARK_APPID_SECRET}"

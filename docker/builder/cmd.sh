@@ -57,8 +57,7 @@ for SUITE_ITERATION in $(seq 1 "${MAX_TEST_SUITE_RETRIES}"); do
       echo "${PACKAGE}: Suite Attempt ${SUITE_ITERATION}: SC Attempt ${SC_ITERATION}: Connecting with Tunnel Identifier ${SC_TUNNEL_IDENTIFIER}"
 
       set +e
-      # daemon -U --name sauce_connect -- ${SC_BINARY} \
-      ${SC_BINARY} \
+      daemon -U --name sauce_connect -- ${SC_BINARY} \
         -D *.ciscospark.com,*.wbx2.com,*.webex.com*,storage101.dfw1.clouddrive.com \
         -vv \
         -l "$(pwd)/reports/sauce/sauce_connect.${PACKAGE}.${SC_ITERATION}.log" \

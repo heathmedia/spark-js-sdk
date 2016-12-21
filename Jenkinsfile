@@ -145,8 +145,8 @@ ansiColor('xterm') {
           }
 
           stage('static analysis') {
-            sh 'npm run grunt:concurrent -- eslint'
-            sh 'npm run grunt -- eslint'
+            sh "docker run ${DOCKER_RUN_OPTS} npm run grunt:concurrent -- eslint"
+            sh "docker run ${DOCKER_RUN_OPTS} npm run grunt -- eslint"
             step([$class: 'CheckStylePublisher',
               canComputeNew: false,
               defaultEncoding: '',

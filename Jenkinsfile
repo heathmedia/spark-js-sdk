@@ -146,6 +146,7 @@ ansiColor('xterm') {
           }
 
           stage('static analysis') {
+            // TODO us grunt concurrent to run sa in each package, that way its overrides can apply
             sh script: "docker run ${DOCKER_RUN_OPTS} npm run grunt:concurrent -- eslint", returnStatus: true
             sh script: "docker run ${DOCKER_RUN_OPTS} npm run grunt -- eslint", returnStatus: true
             step([$class: 'CheckStylePublisher',

@@ -137,6 +137,7 @@ ansiColor('xterm') {
             sh 'mkdir -p reports/junit'
             sh 'mkdir -p reports/logs'
             sh 'mkdir -p reports/sauce'
+            sh 'mkdir -p reports/style'
             sh 'chmod -R ugo+w reports'
           }
 
@@ -145,8 +146,8 @@ ansiColor('xterm') {
           }
 
           stage('static analysis') {
-            sh "docker run ${DOCKER_RUN_OPTS} npm run grunt:concurrent -- eslint"
-            sh "docker run ${DOCKER_RUN_OPTS} npm run grunt -- eslint"
+            sh script: "docker run ${DOCKER_RUN_OPTS} npm run grunt:concurrent -- eslint", returnStatus: true
+            sh script: "docker run ${DOCKER_RUN_OPTS} npm run grunt -- eslint", returnStatus: true
             step([$class: 'CheckStylePublisher',
               canComputeNew: false,
               defaultEncoding: '',

@@ -146,7 +146,11 @@ module.exports = function(grunt) {
         '<%= config.src %>/**/*.js',
         '<%= config.test %>/**/*.js',
         'Gruntfile.js'
-      ]
+      ],
+      options: {
+        format: process.env.XUNIT ? 'checkstyle' : 'stylish',
+        outputFile: process.env.XUNIT && 'reports/style/eslint-legacy.xml'
+      },
     },
 
     fileExists: {

@@ -144,6 +144,20 @@ ansiColor('xterm') {
             // sh "docker run ${DOCKER_RUN_OPTS} npm run build"
           }
 
+          stage('static analysis') {
+            sh 'npm run grunt:concurrent -- eslint'
+            sh 'npm run grunt -- eslint'
+            step([$class: 'CheckStylePublisher',
+              canComputeNew: false,
+              defaultEncoding: '',
+              healthy: '',
+              pattern: 'reports/style/**/*.xml',
+              thresholdLimit: 'high',
+              unHealthy: '',
+              unstableTotalHigh: '0'
+            ])
+          }
+
           stage('test') {
             sh "./tooling/test.sh"
 

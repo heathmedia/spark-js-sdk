@@ -97,7 +97,11 @@ module.exports = function gruntConfig(grunt) {
         './packages/*/test/**/*.js',
         '!./packages/*/test/**/*.es6.js',
         './packages/*/*.js'
-      ]
+      ],
+      options: {
+        format: process.env.XUNIT ? 'checkstyle' : 'stylish',
+        outputFile: process.env.XUNIT && 'reports/style/eslint-<%= package %>.xml'
+      },
     },
 
     stylelint: {

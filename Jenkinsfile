@@ -159,11 +159,12 @@ ansiColor('xterm') {
             ])
           }
 
-          stage('test') {
-            sh "./tooling/test.sh"
+          if (currentBuild.result == 'SUCCESS') {
+            stage('test') {
+              sh "./tooling/test.sh"
 
-            junit 'reports/junit/**/*.xml'
-            echo currentBuild.result
+              junit 'reports/junit/**/*.xml'
+            }
           }
 
           if (currentBuild.result == 'SUCCESS') {

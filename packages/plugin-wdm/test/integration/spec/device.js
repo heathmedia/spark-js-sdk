@@ -22,8 +22,10 @@ describe(`plugin-wdm`, function() {
       `CISCOSPARK_CLIENT_ID`,
       `COMMON_IDENTITY_CLIENT_ID`
     ].forEach((key) => {
-      beforeEach(key, () => {
-        assert.isDefined(process.env[key]);
+      describe(key, () => {
+        it(`is defined`, () => {
+          assert.isDefined(process.env[key]);
+        });
       });
     });
 

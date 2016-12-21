@@ -64,6 +64,7 @@ def generateSecretsFile = { ->
     secrets += "SAUCE_USERNAME=${SAUCE_USERNAME}\n"
     secrets += "SAUCE_ACCESS_KEY=${SAUCE_ACCESS_KEY}\n"
     writeFile file: ENV_FILE, text: secrets
+    sh 'cat .env'
   }
 }
 
